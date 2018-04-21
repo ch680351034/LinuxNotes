@@ -1,0 +1,280 @@
+Manipulating Files
+
+>: Write/append output to a file.
+tail test.txt > notes.txt will add last 10 lines to notes.txt
+tail text.txt >> notes.txt will append last 10 lines.
+tail text.txt 1> notes.txt will append the stndout to notes.txt
+tail.text.txt 2> notes.txt will append the stnderr to notes.txt
+<: Send input to a command
+sort < words.txt : Will take all the words in words.txt and redirect to the sort command.
+cat: Reads a file
+cat filename: reads the file
+cat filename1 > filename2: prints the contents of filename1 inside filename2
+cat filename | less: instead printing entire contents to screen at once, you're able to hit space bar and scroll through one page at a time. 
+curl: Good to access internet sites and download files.
+wget: This can recursively download entire sites into a directory.
+cp: Copy
+cp filename directoryname/ -> Copies the file and puts it in that directory.
+cp filename directoryname/newFileName -> Copies the file and puts it in that directory with the newFileName
+mkdir: Makes a directory.
+mkdir newdir -p: Makes new directory with its name with the relevant parent directories.
+mv: The command to move things.
+rm: The remove/delete command.
+rm [a-e]*.txt: Deletes all those files.
+rmdir: Removes a directory.
+rm -rf directoryName: Forces removal.
+Tar: Combines files into one. No compression.
+tar -cf filename.tar directoryname: Creates a tar file from directoryname
+tar -xf filename: Extracts files from a tar file.
+tar -zcf file.targ.gz: This makes a tar file and then zips it with gzip.
+tar -jcf file.tar.bz2: This makes a tar file and then zips it with bzip.
+
+System Stuff
+cntl D: Exits any command.
+exit: Logs out the user
+env: Prints all environment variables
+halt: if signed in as root, can halt the process.
+info: Similar to man, but much more in depth. Includes hyperlinks, etc.
+init 0: Will shut system down
+ifconfig: lists all network configurations
+man: This connects you to the manual for Linux command line, which broken down into 9(?) menu items. You'll typically only use 1.
+Shortcut is man -k term
+pwd: Prints the working directory path
+Quotes
+Single: Will print everything in there, including $PATH. It effectively turns off special meanings/variables.
+Double: Preserves variables like $PATH
+Backslash \: Cancels out the meaning of the next character.
+echo "The path is \$PATH" will print "The path is $PATH"
+\ at the end of a line allows you to write to the next line.
+reboot: if signed in as root, it will reboot the system and restart
+init 6: Will shut down and restart.
+$: This indicates we want to print/access a variable.
+shutdown:
+shutdown --help: Produces a list of all flags for shutdown.
+shutdown -H: Will halt the machine
+shutdown -r: Reboots the machine
+etc.
+su: Super User
+su tadwhitaker: Logs in as user tadwhitaker
+su -: Allows me to become the root user
+touch: Touches the file.
+touch -d "July 2, 2016" fileName: changes the date of fileName.
+top: Shows the list of applications/processes, memory, etc.
+uname: displays the operating system's name.
+-a: displays all info about the system.
+-i :hardware platform
+-m: hardware architecture
+-n: displays the system's host name
+-o: operating system
+-p: processor
+-r: displays the system's release number
+-s: Displays the name of the kernal
+-v: version number 
+wc -w filename: Prints the number of words in a file.
+
+     
+Searching
+
+apropos: Similar, but looks for anything at all with whatever you follow it with.
+find: 
+find /usr/share/doc -name "*passwd": Search for anything with that string in this tree.
+grep: Searches through a file for a text string. Helpful for searching for a password, username or text string like "error is..."
+grep -i "password" notes.txt: Makes the search case insensitive and returns what it finds.
+grep -in "password" notes.txt: Returns the line number as well.
+grep ^ab text.txt: Will return anything in the text.txt that begins with  ab
+grep $wrd text.txt: Will return anything in text.txt that ends in wrd.
+grep ^...$: This will search for any line that starts/ends and only contains three characters. Could be any three characters.
+grep -r "texthere" .: Recursive search for texture in the current directory.
+-i
+-i: case insensitive
+-n: line number
+--include "*.txt": specifies file types
+--exclude "*.txt": excludes file types
+-rni: all together
+head: Reads the top 10 lines of a file
+less: Reads a file
+locate passwd: Broader, which searches a database of file names. Faster, but you can't specify a location.
+ls -a: will print out all hidden and visible files
+ls -l: prints out the long info about everything in the directory
+tail: Reads the last 10 lines of a file.
+whatis passwd: A catch-all search for a keyword
+whereis passwd: Searches man and some other directories, but really only looks for program executables.
+
+Regular Expression
+*: Matches any character
+.: Any single character
+? Matches zero or one of the proceeding characters
+^: Matches expression if it appears at the beginning
+$: Matches expression if it appears at the end
+[nnn]: Matches any one character between the braces
+[^nnn]: Matches any expression that doesn't contain any one of the characters
+[n-n]: Matches any single character
+[1-10] Matches character between 1 and 1, or 0
+[ser]: Matches s, and then e and then r
+
+Flags, Dashes and Arguments:
+Option: It's a dash - These can be chained like -a -ls
+Argument: Anything without a leading dash.
+ls *.txt: Lists all files in the current directory that end with .txt
+ls ???.txt: Lists all files that ends in .txt and have three characters in the name.
+? is a wildcard for a single value.
+ls [F]*.txt: Displays: Displays all files starting with uppercase F, any number of following characters and ending in .txt
+using a \ will escape characters like \$5.00 to make sure it prints the whole thing.
+
+Linux vs Unix
+Command Line:
+Must run ./ filename to make the file run. It's different than Unix in that simply typing filename will error.
+It's case sensitive
+cat bash_history: reads the entire bash history, which defaults to 500 lines and is expandable.
+etc/bashrc: A shell system-wide functions and aliases to run different commands for our bashrc file.
+etc/profile: 
+Variables:
+Environment variables can be called with echo $variable name
+echo $PATH
+env will print out all variables, but 'set' will do so in alphabetical order
+
+Kernal:
+Manages resources (is there enough memory for an application to run?)
+Connects software to hardware
+Uses drivers for controlling things like speakers
+Optimizes usage of the processor, etc.
+Doles out CPU time
+the sbin/init program starts all the other programs that manage log ins, etc. These are call child processes.
+
+RPM: A package manager tool that can be used to find things. (rpm yum | grep README) should return the README of the yum application
+
+globbing: 
+
+Compressing Files
+Gzip: Compressor
+gunzip: Unzips
+Bzip2: Better algorithm at compressing larger files down.
+bunzip
+Zip: Compresses and archives both. Can tar with gzip/bzip to accomplish this.
+zip newfile.zip filetozip.txt
+zip -r newfile.zip foldertozip: Recursively go through all the folders and zip them too.
+Tar: See tar up above.
+
+FSH System
+bin: executable files to run and manage the system like copy, remove, bash.
+boot: boots the Linux system
+dev: Represents different hardware devices on the system. Mice, data blocks like hard drive or thumb drive, etc.
+etc: Text config files and services. Things like password storage, user accounts, etc.
+Config files for Linux operating sys
+lib: libraries for programs in bin and other directories.
+Stuff needed for the boot process
+Things like kernel drivers
+media: Mounts for external devices like a USB drive
+mnt: Other external drives like cd or dvd
+opt: Files for some things that you install manually
+proc: It is a sudo file system that accesses systems based on numbers, not file names. 
+root: The root user's home directory.
+sbin: Important system management files like init, shutdown and halt.
+srv: Where ftp or apache save files.
+sys: Hardware on the system info
+tmp: Temporary files. Contains temporary files that do get deleted on reboot. Anyone on the system can write here, but they can also delete anyone else's files here too. You can add a 'sticky bit' that says only users are allowed to delete their info.
+usr: Particular user.
+Just a symbolic link to the /usr library
+var: Contains files that change often such as mail, logs, etc. This file can grow to a huge size and, on some machines, this is an actual separate drive.
+var/tmp: Contains files that do not get deleted on reboot
+
+Text Editors
+Nano: 
+nano file.txt
+Pico: Part of Pine email system and a clone of Nano
+VI:
+vi file.txt:
+After opening file, need to type 'i' 's' 'o' or 'a' to insert stuff into the document.
+command mode: Where you can save, etc.
+insert: Allows you to write
+dw: deletes the next word
+dd: deletes the entire line
+/ here: finds the first instance of 'here'
+n: hitting 'n' would toggle from one 'here' to the next 'here'
+
+Shell Scripting
+chmod +x firstscript.sh: This makes the file executable.
+look at the linux/findlist.sh script for good examples of if/then
+
+Hardware
+CPU: The core of the computer, it's Central Processing Unit. The data processing takes place here. Fast computers usually have more than one processor.
+Hard Disk: Stores more than RAM and is persistent, but much slower. There's magnetic disks and SSD, which is solid state. SSD is more expensive and use less energy.
+Motherboard: What all the electronics (CPU, etc.) are attached to. It also contains a system called the BIOS that helps the system function.
+Power Supply: Internal converter that takes AC and converts to DC, which is used internally to power everything.
+RAM: Random Access Memory. This stores the data being processed and the code being executed. It's fast and the CPU can access info here quickly. However, it's not persistent and only stays there while the computer is running.
+
+Processes
+Every process has a PID number that starts with 1.
+They have a PPID, which is parent process id
+You can identify these with the ps command
+ps u U tadwhitaker: Will show information about that user
+A good way to minimize data is with grep
+ps ax | grep vim: That will show only vim processes running
+Another way is with the top command, which shows things running live. A good way to look for processes that are misbehaving in real-time.
+Look up top man for more info
+top kill will kill a process id
+Shows load averages for programs/tasks
+A 4.0 load average on a quad core processor reflects the max.
+Memory leak: When a program/process requests memory from the kernel and then fails to return it upon completion.
+Free: Generates the status of the computer memory that's free.
+free -h: Shows it in human-readable form
+
+Logs
+Look under /var/log
+tail boot.log: Print the last 10 lines (most recent info) of the boot log.
+You grep in here too:
+grep ssh /var/log/*: Will show anywhere this string appears in this /var/log directory/s
+dmesg | grep console: Shows what's going on with console process
+
+Networking
+Gateway: 
+ICMP: Internet Control Message Protocol. Tests network communication between hosts. It's just a ping.
+IP: Internet Protocol
+Must be four numbers
+0-256
+10.10.0.1
+NAT: Network Address Translation. NAT routers allow you to hide a huge network behind one public IP. It breaks everything up behind it.
+Octet: 
+OSI Model
+Physical
+Data Link
+Network
+Transport: This is where info is broken up into packets.
+Session: Establishing and maintain connections between hosts.
+Presentation: Makes sure everything is formatted correctly.
+Application
+Ports:
+20 and 21: FTP
+23: Tenet
+25: Smtp
+80: HTTP
+110: POP3
+137, 138, 139: NetBIOS
+443: HTTPS
+Router: These help reconcile different IP/Subnets so they can talk with each other.
+Subnet Mask:
+TCP: Packets can be lost, sent in wrong order, etc. Makes sure data exchanged between two network hosts is exchanged reliably. Comes at a cost: High latency. Some use UDP because they don't need the consistency.
+Tools
+Ping: Tests connectivity of two hosts on a network. ping www.google.com
+Dig: Allows us to look up IP addresses for DNS names
+net stat: List network connections, routing info, NIC info
+route: current route/net settings
+traceroute: Traces the route a packet takes
+ifconfig: Current network settings
+ip addr: Current IP address and network settings.  
+UDP: A connection-less protocol. Typically small amounts of data and applications that don't suffer if little parts are missing.
+
+File/Directory Permissions and Owners
+User-Group-Other
+drwxrwxr-x:
+It's a directory
+User: Read, Write and Execute
+Group: Same
+Other: Read, no write and execute
+Symbolic links:
+ln -s /path/to/filename.txt linkname
+
+
+
+
+
